@@ -1,28 +1,21 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
-import React from 'react';
-import {
-  Text,
-  // useColorScheme,
-  View,
-} from 'react-native';
+import React, { useContext } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { NavigationProvider } from './app/providers';
+
+import { NavigationProvider, ThemeProvider, ThemeContext } from './app/providers';
+import { GoalsView } from './features/goals/view/GoalsView';
 
 function App(): React.JSX.Element {
-  // const isDarkMode = useColorScheme() === 'dark';
+
+  const { theme } = useContext(ThemeContext);
 
   return (
-    <NavigationContainer>
-      <NavigationProvider>
-        <View><Text>Home screen</Text></View>
-      </NavigationProvider>
-    </NavigationContainer>
+    <ThemeProvider>
+      <NavigationContainer theme={theme}>
+        <NavigationProvider>
+          <GoalsView />
+        </NavigationProvider>
+      </NavigationContainer>
+    </ThemeProvider>
   );
 }
 
